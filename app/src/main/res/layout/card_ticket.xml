@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        app:cardUseCompatPadding="true"
+        android:padding="5dp"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="8dp"
+        android:layout_height="100dp"
+        android:background="?attr/selectableItemBackgroundBorderless">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="5">
+        <ImageView
+                android:id="@+id/imgImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:src="@drawable/ic_shortcut_events"
+        />
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:orientation="vertical"
+                android:background="@color/whiteOne"
+                android:layout_weight="1">
+            <TextView
+                    android:id="@+id/tvLabel"
+                    android:layout_width="match_parent"
+                    android:textSize="8pt"
+                    android:text="Jazz Festival"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"/>
+            <TextView
+                    android:id="@+id/tvDesc"
+                    android:layout_width="match_parent"
+                    android:textSize="5pt"
+                    android:text="Safaricom Twaweza"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"/>
+            <TextView
+                    android:id="@+id/tvPaymentStatus"
+                    android:layout_width="match_parent"
+                    android:textSize="5.5pt"
+                    android:text="Not Paid"
+                    android:textColor="#D80404"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@color/whiteOne"
+                android:layout_weight="2">
+            <TextView
+                    android:id="@+id/tvDay"
+                    android:layout_width="match_parent"
+                    android:textSize="10pt"
+                    android:text="8"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"/>
+            <TextView
+                    android:id="@+id/tvMonthYear"
+                    android:layout_width="match_parent"
+                    android:textSize="5pt"
+                    android:textAlignment="center"
+                    android:text="June 2019"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
