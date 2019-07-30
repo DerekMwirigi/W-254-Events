@@ -28,6 +28,9 @@ class TicketItemViewHolder(itemView: View, listener: OnRecyclerViewItemClick) : 
         tvDay = itemView.findViewById(R.id.tvDay)
         tvPaymentStatus = itemView.findViewById(R.id.tvPaymentStatus)
         image = itemView.findViewById(R.id.imgImage)
+
+        itemView.setOnClickListener(this)
+        itemView.setOnLongClickListener(this)
     }
 
     override fun onLongClick(p0: View?): Boolean {

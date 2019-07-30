@@ -1,5 +1,6 @@
 package com.example.wsupevents.ui.events
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -26,6 +27,9 @@ class EventItemViewHolder(itemView: View, listener: OnRecyclerViewItemClick) : R
         tvMonthYear = itemView.findViewById(R.id.tvMonthYear)
         tvDay = itemView.findViewById(R.id.tvDay)
         image = itemView.findViewById(R.id.imgImage)
+
+        itemView.setOnClickListener(this)
+        itemView.setOnLongClickListener(this)
     }
 
     override fun onLongClick(p0: View?): Boolean {

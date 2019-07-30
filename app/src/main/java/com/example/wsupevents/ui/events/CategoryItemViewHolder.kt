@@ -20,6 +20,9 @@ class CategoryItemViewHolder(itemView: View, listener: OnRecyclerViewItemClick) 
         this.itemVew = itemView
         label = itemView.findViewById(R.id.tvLabel)
         image = itemView.findViewById(R.id.imgImage)
+
+        itemView.setOnClickListener(this)
+        itemView.setOnLongClickListener(this)
     }
 
     override fun onLongClick(p0: View?): Boolean {

@@ -20,6 +20,10 @@ class Event {
     @Expose
     var eventDate: String? = null
 
+    @SerializedName("ticketPrice")
+    @Expose
+    var ticketPrice: Double? = null
+
     @SerializedName("locationName")
     @Expose
     var locationName: String? = null

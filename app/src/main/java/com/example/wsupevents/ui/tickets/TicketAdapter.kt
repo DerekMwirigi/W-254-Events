@@ -29,7 +29,6 @@ class TicketAdapter(private var modelList: List<Ticket>?, private val recyclerLi
             "Paid"-> {
                 holder.tvPaymentStatus.setTextColor(Color.parseColor("#48FF00"))
             }
-
         }
         holder.description.text = "Tickets " + model.noTickets.toString()
         val eventDate = LocalDate.parse(model.eventDate, DateTimeFormatter.ISO_DATE)

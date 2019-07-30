@@ -5,4 +5,9 @@
     <string name="title_events">Events</string>
     <string name="title_tickets">Tickets</string>
     <string name="title_profile">Profile</string>
+    <string name="default_notification_channel_id">Profile</string>
+    <string name="password">Password</string>
+    <string name="uId">Mobile</string>
+    <string name="next">Next</string>
+    <string name="welcome">Welcome Derek</string>
 </resources>

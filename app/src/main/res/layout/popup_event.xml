@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        app:cardUseCompatPadding="true"
+        android:padding="5dp"
+        app:cardElevation="6dp"
+        app:cardCornerRadius="6dp"
+        android:layout_height="250dp"
+        android:background="?attr/selectableItemBackgroundBorderless">
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="200dp">
+            <ImageView android:layout_width="match_parent"
+                       android:id="@+id/imgImage"
+                       android:layout_height="match_parent"
+                       android:layout_centerInParent="true"/>
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:padding="8dp"
+                          android:background="@color/whiteOne"
+                          android:alpha="0.8"
+                          android:weightSum="3"
+                          android:layout_alignParentBottom="true">
+                <LinearLayout android:layout_width="0dp"
+                              android:layout_height="match_parent"
+                              android:layout_weight="2"
+                              android:orientation="vertical">
+                    <TextView android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:id="@+id/tvLabel"
+                              android:text="Connect"
+                              android:textSize="8pt"
+                              android:textStyle="bold"
+                              android:textColor="#525151"/>
+                    <TextView android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:id="@+id/tvDesc"
+                              android:text="Connect"
+                              android:textSize="5pt"
+                              android:textStyle="normal"
+                              android:textColor="#525151"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp"
+                              android:layout_height="match_parent"
+                              android:layout_weight="1"
+                              android:orientation="vertical">
+                    <TextView android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:id="@+id/tvDay"
+                              android:layout_gravity="center"
+                              android:textAlignment="center"
+                              android:text="08"
+                              android:textStyle="bold"
+                              android:gravity="center"
+                              android:textSize="8pt"
+                              android:textColor="#7A7979"/>
+                    <TextView android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:id="@+id/tvMonthYear"
+                              android:text="June 2019"
+                              android:textSize="5pt"
+                              android:textAlignment="center"
+                              android:textStyle="normal"
+                              android:textColor="#7A7979"/>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    app:boxCornerRadiusTopStart="1dp"
+                    app:boxCornerRadiusTopEnd="1dp"
+                    app:boxCornerRadiusBottomStart="1dp"
+                    app:boxCornerRadiusBottomEnd="1dp"
+                    android:visibility="visible"
+                    app:boxStrokeWidth="1dp"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:passwordToggleEnabled="true">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtTickets"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:helperText="No Tickets"
+                        app:helperTextEnabled="true"
+                        android:hint="No Tickets"
+                        android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
