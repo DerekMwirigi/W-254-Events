@@ -40,16 +40,20 @@ class PrefrenceManager(internal var _context: Context) {
         editor.commit()
     }
 
+    fun getFirebaseToken() : String?{
+        return pref.getString(FIREBASE_TOKEN, "")
+    }
+
     fun setUserSession(user: User?){
         editor.putString(PROFILE, Gson().toJson(user))
         editor.commit()
     }
 
     fun getUserSession () : User?{
-        val listType = object : TypeToken<User>() {
-        }.type
+        val listType = object : TypeToken<User>() {}.type
         return Gson().fromJson<User>(pref.getString(PROFILE, ""), listType)
     }
+
     fun getLoginStatus(): Int {
         return pref.getInt(LOGIN_STATUS,0)
     }

@@ -2,9 +2,7 @@ package com.example.wsupevents.services
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
 import android.util.Log
@@ -22,10 +20,11 @@ class FirebaseMessaging : FirebaseMessagingService() {
     private val TAG = "taggs"
     override fun onNewToken(p0: String?) {
         super.onNewToken(p0)
-        val refreshedToken = p0
-        Log.d("firebaseToken", refreshedToken)
-        if (refreshedToken != null) {
-            PrefrenceManager(applicationContext).setFirebaseToken(refreshedToken)
+        if (p0 != null) {
+            PrefrenceManager(applicationContext).setFirebaseToken(p0)
+            Log.d("firebaseToken", "Available Firebase$p0")
+        }else{
+            Log.d("firebaseToken", "No Firebase")
         }
     }
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {

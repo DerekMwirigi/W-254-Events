@@ -2,6 +2,7 @@ package com.example.wsupevents.config
 
 import com.example.auth.models.VerifyUId
 import com.example.auth.models.VerifyUSecret
+import com.example.wsupevents.models.auth.User
 import com.example.wsupevents.models.auth.VerifyUIdRes
 import com.example.wsupevents.models.auth.VerifyUSecretRes
 import com.example.wsupevents.models.events.EventCategoriesRes
@@ -10,9 +11,7 @@ import com.example.wsupevents.models.tickets.BuyTicketReq
 import com.example.wsupevents.models.tickets.BuyTicketRes
 import com.example.wsupevents.models.tickets.HistoryTicketsRes
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface EndpointApis {
     @POST("auth/verifyuid.php")
@@ -20,6 +19,10 @@ interface EndpointApis {
 
     @POST("auth/verifyusecret.php")
     fun verifyUSecret (@Body verifyUSecret: VerifyUSecret?) : Call<VerifyUSecretRes>
+
+    @FormUrlEncoded
+    @POST("account/updatefirebasetoken.php")
+    fun updateFirebaseToken (@Field("firebaseToken") firebaseToken: String) : Call<VerifyUSecretRes>
 
     @GET("event/fetch.php")
     fun fetchEvents(): Call<EventsRes>
