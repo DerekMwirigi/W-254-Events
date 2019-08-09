@@ -1,8 +1,7 @@
-package com.example.wsupevents.config
+package com.example.wsupevents.network
 
 import com.example.auth.models.VerifyUId
 import com.example.auth.models.VerifyUSecret
-import com.example.wsupevents.models.auth.User
 import com.example.wsupevents.models.auth.VerifyUIdRes
 import com.example.wsupevents.models.auth.VerifyUSecretRes
 import com.example.wsupevents.models.events.EventCategoriesRes

@@ -1,6 +1,6 @@
 package com.example.wsupevents.utils
 
-import com.example.wsupevents.config.EndpointApis
+import com.example.wsupevents.network.EndpointApis
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

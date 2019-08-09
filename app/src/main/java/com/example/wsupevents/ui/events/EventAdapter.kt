@@ -26,7 +26,7 @@ class EventAdapter(private var modelList: List<Event>?, private val recyclerList
         holder.description.text = model.plannerName
         val eventDate = LocalDate.parse(model.eventDate, DateTimeFormatter.ISO_DATE)
         holder.tvDay.text = eventDate.dayOfMonth.toString()
-        holder.tvMonthYear.text = eventDate.month.toString() + " " + eventDate.year
+        holder.tvMonthYear.text = eventDate.month.toString()
         Glide.with(itemView!!)  //2
             .load(model.image) //3
             .centerCrop() //4

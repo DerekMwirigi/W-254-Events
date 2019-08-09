@@ -26,6 +26,7 @@ import com.example.wsupevents.models.tickets.BuyTicketReq
 import com.example.wsupevents.models.tickets.BuyTicketRes
 import com.example.wsupevents.models.xit.Resource
 import com.example.wsupevents.models.xit.Status
+import com.example.wsupevents.storage.data.PrefrenceManager
 import com.example.wsupevents.storage.events.EventsRepository
 import com.example.wsupevents.storage.tickets.TicketRepository
 import com.example.wsupevents.utils.OnRecyclerViewItemClick
@@ -99,7 +100,7 @@ class EventViewModel  (application: Application) : AndroidViewModel(application)
             .setPositiveButton("Ok") { _, _ -> ticketRepository.buyTicket(
                 BuyTicketReq(
                     1,
-                    "254706828557",
+                    PrefrenceManager(context!!).getUserSession()?.mobile,
                     event.id,
                     edtTickets.text.toString().toInt(),
                     (edtTickets.text.toString().toInt() * event.ticketPrice!!)
