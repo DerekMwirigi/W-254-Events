@@ -1,4 +1,4 @@
-package com.example.wsupevents.ui
+package com.example.wsupevents.ui.auth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

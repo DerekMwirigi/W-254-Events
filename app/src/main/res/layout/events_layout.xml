@@ -8,7 +8,7 @@
                           android:layout_height="match_parent"
                           android:padding="5dp"
                           android:background="@color/greyOne"
-            android:orientation="vertical">
+                          android:orientation="vertical">
 
                 <SearchView
                         android:visibility="visible"
@@ -16,6 +16,7 @@
                         android:layout_width="match_parent"
                         android:elevation="10dp"
                         android:queryHint="Search events"
+                        app:cornerRadius="20dp"
                         android:autofillHints="Search events"
                         android:background="#fff"
                         android:layout_height="wrap_content">
@@ -37,7 +38,7 @@
                             android:padding="5dp"
                             app:cardUseCompatPadding="true"
                             app:cardElevation="10dp"
-                            android:layout_marginRight="-21dp"
+                            android:layout_marginRight="0dp"
                             app:cardCornerRadius="12dp">
                     <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rvEvents"

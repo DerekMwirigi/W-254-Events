@@ -1,13 +1,11 @@
 package com.example.wsupevents.ui.events
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -15,10 +13,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wsupevents.R
-import com.example.wsupevents.models.events.EventCategoriesRes
-import com.example.wsupevents.models.events.EventsRes
-import com.example.wsupevents.models.tickets.BuyTicketRes
-import com.example.wsupevents.models.xit.Resource
 import com.example.wsupevents.models.xit.Status
 import com.example.wsupevents.utils.OnRecyclerViewItemClick
 import com.example.wsupevents.utils.Xit
@@ -46,7 +40,9 @@ class EventsFragment : Fragment() {
                 if(data.status== Status.SUCCESS&&data.data!=null){
                    rvEvents.adapter = EventAdapter(data.data.data!!, object : OnRecyclerViewItemClick {
                        override fun onClickListener(position: Int) {
-                           viewModel.showEvent(context, data.data.data!![position])
+                           val intent = Intent(context, EventActivity::class.java)
+                           startActivity(intent)
+                           //viewModel.showEvent(context, data.data.data!![position])
                        }
                        override fun onLongClickListener(position: Int) {
                        }

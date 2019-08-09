@@ -16,9 +16,10 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
+        <activity android:name=".ui.payment.PaymentActivity">
+        </activity>
         <activity
-                android:name=".EventActivity"
-                android:label="@string/title_activity_event"
+                android:name=".ui.events.EventActivity"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
@@ -43,7 +44,7 @@
         <meta-data
                 android:name="com.google.firebase.messaging.default_notification_channel_id"
                 android:value="@string/default_notification_channel_id"/> <!-- [END fcm_default_channel] -->
-        <activity android:name=".ui.AuthActivity">
+        <activity android:name=".ui.auth.AuthActivity">
         </activity>
 
         <service
@@ -66,12 +67,12 @@
                 android:value="@string/default_notification_channel_id"/>
 
         <activity
-                android:name=".ui.MainActivity"
+                android:name=".ui.main.MainActivity"
                 android:label="@string/title_activity_home">
         </activity>
         <activity android:name=".ui.main.Home">
         </activity>
-        <activity android:name=".ui.SplashActivity">
+        <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

@@ -1,4 +1,4 @@
-package com.example.wsupevents.ui
+package com.example.wsupevents.ui.splash
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import android.os.Handler
 import android.view.View
 import com.example.wsupevents.R
 import com.example.wsupevents.storage.data.PrefrenceManager
+import com.example.wsupevents.ui.auth.AuthActivity
 import com.example.wsupevents.ui.main.Home
 import com.example.wsupevents.utils.Xit
 
