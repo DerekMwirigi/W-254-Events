@@ -12,6 +12,7 @@ import com.example.auth.models.VerifyUId
 import com.example.wsupevents.R
 import com.example.wsupevents.models.xit.Status
 import com.example.wsupevents.ui.auth.AuthViewModel
+import com.example.wsupevents.ui.auth.SignUpFragment
 import com.example.wsupevents.utils.Xit
 import kotlinx.android.synthetic.main.verifyuid_layout.*
 
@@ -41,6 +42,12 @@ class VerifyUIdFragment : Fragment() {
             }
         })
         btNext.setOnClickListener {  viewModel.verifyUID(verifyUId())}
+        btSignUp.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.flContents, SignUpFragment.newInstance())
+               // ?.addToBackStack("signUp")
+                ?.commitNow()
+        }
     }
 
     private fun verifyUId () : VerifyUId {

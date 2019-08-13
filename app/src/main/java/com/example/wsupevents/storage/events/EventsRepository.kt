@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.wsupevents.R
 import com.example.wsupevents.models.events.EventCategoriesRes
+import com.example.wsupevents.models.events.EventRes
 import com.example.wsupevents.models.events.EventsRes
 import com.example.wsupevents.models.xit.Resource
 import com.example.wsupevents.utils.NetworkUtils
@@ -18,9 +19,44 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class EventsRepository (application: Application) {
+    val eventObservable = MutableLiveData<Resource<EventRes>>()
     val eventsObservable = MutableLiveData<Resource<EventsRes>>()
     val categoriesObservable = MutableLiveData<Resource<EventCategoriesRes>>()
     private val context: Context = application.applicationContext
+    fun viewEvent(id: Int) {
+        if (NetworkUtils.isConnected(context)) {
+            eventObservable.postValue(Resource.loading(null))
+            GlobalScope.launch(context = Dispatchers.Main) {
+                val call = RequestService.getService("").viewEvent(id)
+                call.enqueue(object : Callback<EventRes> {
+                    override fun onFailure(call: Call<EventRes>?, t: Throwable?) {
+                        eventObservable.postValue(Resource.error(t.toString(), null))
+                    }
+                    override fun onResponse(call: Call<EventRes>?, response: Response<EventRes>?) {
+                        if (response != null) {
+                            if (response.isSuccessful) {
+                                if (response.body()?.success !!) {
+                                    if(response.body()?.status_code == 1){
+                                        response.body()?.let { eventObservable.postValue(Resource.success(it))  }
+                                    }else{
+                                        response.body()?.errors?.let {  eventObservable.postValue(Resource.error(response.body()?.message + "\n" + it.joinToString { "\n" }, null)) }
+                                    }
+                                } else {
+                                    response.body()?.errors?.let { eventObservable.postValue(Resource.error( response.body()?.message + "\n" + it.joinToString { "\n" }, null)) }
+                                }
+                            } else {
+                                eventObservable.postValue(Resource.error( response.toString(), null))
+                            }
+                        } else {
+                            eventObservable.postValue(Resource.error("Error Logging In", null))
+                        }
+                    }
+                })
+            }
+        } else {
+            eventObservable.postValue(Resource.error(context.getString(R.string.no_connection), null))
+        }
+    }
     fun fetchEvents() {
         if (NetworkUtils.isConnected(context)) {
             eventsObservable.postValue(Resource.loading(null))

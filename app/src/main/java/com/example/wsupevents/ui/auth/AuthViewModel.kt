@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.example.auth.models.VerifyUId
 import com.example.auth.models.VerifyUSecret
+import com.example.wsupevents.models.auth.SignUp
 import com.example.wsupevents.models.auth.VerifyUIdRes
 import com.example.wsupevents.models.auth.VerifyUSecretRes
 import com.example.wsupevents.models.xit.Resource
@@ -15,7 +16,6 @@ class AuthViewModel  (application: Application) : AndroidViewModel(application) 
     private val verifyUIDObservable = MediatorLiveData<Resource<VerifyUIdRes>>()
     private val verifyUSecretObservable = MediatorLiveData<Resource<VerifyUSecretRes>>()
     var authRepository: AuthRepository = AuthRepository(application)
-
     init {
         verifyUIDObservable.addSource(authRepository.verifyUIDObservable) { data -> verifyUIDObservable.setValue(data) }
         verifyUSecretObservable.addSource(authRepository.verifyUSecretObservable) { data -> verifyUSecretObservable.setValue(data) }
@@ -25,6 +25,9 @@ class AuthViewModel  (application: Application) : AndroidViewModel(application) 
     }
     fun verifyUID(verifyUId: VerifyUId){
         authRepository.verifyUID(verifyUId)
+    }
+    fun signUp(signUp: SignUp){
+        authRepository.signUp(signUp)
     }
     fun observeVerifyUSecret(): LiveData<Resource<VerifyUSecretRes>> {
         return verifyUSecretObservable

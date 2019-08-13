@@ -41,8 +41,8 @@ class EventsFragment : Fragment() {
                    rvEvents.adapter = EventAdapter(data.data.data!!, object : OnRecyclerViewItemClick {
                        override fun onClickListener(position: Int) {
                            val intent = Intent(context, EventActivity::class.java)
+                           intent.putExtra("eventModel", data.data.data!![position])
                            startActivity(intent)
-                           //viewModel.showEvent(context, data.data.data!![position])
                        }
                        override fun onLongClickListener(position: Int) {
                        }
@@ -74,6 +74,5 @@ class EventsFragment : Fragment() {
                 }
             }
         })
-        //viewModel.showEvent(context, null)
     }
 }

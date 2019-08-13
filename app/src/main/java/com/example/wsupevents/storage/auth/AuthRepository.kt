@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.auth.models.VerifyUId
 import com.example.auth.models.VerifyUSecret
 import com.example.wsupevents.R
+import com.example.wsupevents.models.auth.SignUp
 import com.example.wsupevents.models.auth.VerifyUIdRes
 import com.example.wsupevents.models.auth.VerifyUSecretRes
 import com.example.wsupevents.models.xit.Resource
@@ -32,6 +33,45 @@ class AuthRepository (application: Application) {
         //sessionDao = db.getSesssionDao()
         context = application.applicationContext
     }
+    fun signUp (signUp: SignUp) : LiveData<Resource<VerifyUSecretRes>> {
+        if (NetworkUtils.isConnected(context)) {
+            verifyUSecretObservable.postValue(Resource.loading(null))
+            GlobalScope.launch(context = Dispatchers.Main) {
+                val call = RequestService.getService("").signUp(signUp)
+                call.enqueue(object : Callback<VerifyUSecretRes> {
+                    override fun onFailure(call: Call<VerifyUSecretRes>?, t: Throwable?) {
+                        verifyUSecretObservable.postValue(Resource.error(t.toString(), null))
+                    }
+                    override fun onResponse(call: Call<VerifyUSecretRes>?, response: Response<VerifyUSecretRes>?) {
+                        if (response != null) {
+                            if (response.isSuccessful) {
+                                if (response.body()?.success !!) {
+                                    if(response.body()?.status_code == 1){
+                                        PrefrenceManager(context!!).setUserSession(response.body()?.data)
+                                        //sessionDao.deleteSession()
+                                        //sessionDao.insertSession(response.body()?.data)
+                                        response.body()?.let { verifyUSecretObservable.postValue(Resource.success(it))  }
+                                    }else{
+                                        response.body()?.errors?.let {  verifyUSecretObservable.postValue(Resource.error(response.body()?.message + "\n" + it.joinToString { "\n" }, null)) }
+                                    }
+                                } else {
+                                    response.body()?.errors?.let { verifyUSecretObservable.postValue(Resource.error( response.body()?.message + "\n" + it.joinToString { "\n" }, null)) }
+                                }
+                            } else {
+                                verifyUSecretObservable.postValue(Resource.error( response.toString(), null))
+                            }
+                        } else {
+                            verifyUSecretObservable.postValue(Resource.error("Error Logging In", null))
+                        }
+                    }
+                })
+            }
+        } else {
+            verifyUSecretObservable.postValue(Resource.error(context.getString(R.string.no_connection), null))
+        }
+        return verifyUSecretObservable
+    }
+
     fun verifyUID (verifyUId: VerifyUId) {
         if (NetworkUtils.isConnected(context)) {
             verifyUIDObservable.postValue(Resource.loading(null))

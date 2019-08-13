@@ -17,12 +17,18 @@ class AuthActivity : AppCompatActivity() {
                 .commitNow()
         }
         btSignIn.setOnClickListener { showFragment("signIn") }
+        btSignUp.setOnClickListener { showFragment("signUp") }
     }
     private fun showFragment(fragment: String){
         when(fragment){
             "signIn"->{
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.flContents, VerifyUIdFragment.newInstance())
+                    .commitNow()
+            }
+            "signUp"->{
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.flContents, SignUpFragment.newInstance())
                     .commitNow()
             }
         }

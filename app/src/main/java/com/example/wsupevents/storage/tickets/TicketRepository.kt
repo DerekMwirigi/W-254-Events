@@ -6,8 +6,9 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.wsupevents.R
 import com.example.wsupevents.models.tickets.BuyTicketReq
-import com.example.wsupevents.models.tickets.BuyTicketRes
+import com.example.wsupevents.models.tickets.IntPaymentRes
 import com.example.wsupevents.models.tickets.HistoryTicketsRes
+import com.example.wsupevents.models.tickets.InitPayment
 import com.example.wsupevents.models.xit.Resource
 import com.example.wsupevents.storage.data.PrefrenceManager
 import com.example.wsupevents.utils.NetworkUtils
@@ -21,7 +22,7 @@ import retrofit2.Response
 
 class TicketRepository (application: Application) {
     val ticketsObservable = MutableLiveData<Resource<HistoryTicketsRes>>()
-    val buyTicketObservable = MutableLiveData<Resource<BuyTicketRes>>()
+    val buyTicketObservable = MutableLiveData<Resource<IntPaymentRes>>()
     private val context: Context = application.applicationContext
     fun fetchTickets() {
         if (NetworkUtils.isConnected(context)) {
@@ -63,12 +64,49 @@ class TicketRepository (application: Application) {
             buyTicketObservable.postValue(Resource.loading(null))
             GlobalScope.launch(context = Dispatchers.Main) {
                 val call = RequestService.getService("Bearer " + PrefrenceManager(context).getUserSession()?.token).createTicket(buyTicketReq)
-                call.enqueue(object : Callback<BuyTicketRes> {
-                    override fun onFailure(call: Call<BuyTicketRes>?, t: Throwable?) {
+                call.enqueue(object : Callback<IntPaymentRes> {
+                    override fun onFailure(call: Call<IntPaymentRes>?, t: Throwable?) {
                         Log.d("response", t.toString())
                         buyTicketObservable.postValue(Resource.error(t.toString(), null))
                     }
-                    override fun onResponse(call: Call<BuyTicketRes>?, response: Response<BuyTicketRes>?) {
+                    override fun onResponse(call: Call<IntPaymentRes>?, response: Response<IntPaymentRes>?) {
+                        Log.d("response", response.toString())
+                        if (response != null) {
+                            if (response.isSuccessful) {
+                                if (response.body()?.success !!) {
+                                    if(response.body()?.status_code == 1){
+                                        response.body()?.let { buyTicketObservable.postValue(Resource.success(it))  }
+                                    }else{
+                                        response.body()?.errors?.let {  buyTicketObservable.postValue(Resource.error(response.body()?.message + "\n" + it.joinToString { "\n" }, null)) }
+                                    }
+                                } else {
+                                    response.body()?.errors?.let { buyTicketObservable.postValue(Resource.error( response.body()?.message + "\n" + it.joinToString { "\n" }, null)) }
+                                }
+                            } else {
+                                buyTicketObservable.postValue(Resource.error( response.toString(), null))
+                            }
+                        } else {
+                            buyTicketObservable.postValue(Resource.error("Error Logging In", null))
+                        }
+                    }
+                })
+            }
+        } else {
+            buyTicketObservable.postValue(Resource.error(context.getString(R.string.no_connection), null))
+        }
+    }
+
+    fun initPayment (initPayment: InitPayment) {
+        if (NetworkUtils.isConnected(context)) {
+            buyTicketObservable.postValue(Resource.loading(null))
+            GlobalScope.launch(context = Dispatchers.Main) {
+                val call = RequestService.getService("Bearer " + PrefrenceManager(context).getUserSession()?.token).initPayment(initPayment)
+                call.enqueue(object : Callback<IntPaymentRes> {
+                    override fun onFailure(call: Call<IntPaymentRes>?, t: Throwable?) {
+                        Log.d("response", t.toString())
+                        buyTicketObservable.postValue(Resource.error(t.toString(), null))
+                    }
+                    override fun onResponse(call: Call<IntPaymentRes>?, response: Response<IntPaymentRes>?) {
                         Log.d("response", response.toString())
                         if (response != null) {
                             if (response.isSuccessful) {

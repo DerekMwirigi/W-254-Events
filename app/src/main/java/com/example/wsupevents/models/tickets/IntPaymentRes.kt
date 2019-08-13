@@ -3,7 +3,7 @@ package com.example.wsupevents.models.tickets
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class BuyTicketRes {
+class IntPaymentRes {
     @SerializedName("success")
     @Expose
     var success: Boolean? = null

@@ -6,13 +6,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.auth.AuthActivity">
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <FrameLayout
+                android:id="@+id/flContents"
+                android:layout_width="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_height="wrap_content">
+        </FrameLayout>
+    </ScrollView>
 
-    <FrameLayout
-            android:id="@+id/flContents"
-            android:layout_width="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_height="wrap_content">
-    </FrameLayout>
     <LinearLayout android:layout_width="match_parent"
                   android:orientation="horizontal"
                   android:weightSum="2"
@@ -22,6 +24,7 @@
                   android:layout_height="wrap_content">
         <com.google.android.material.button.MaterialButton
                 android:id="@+id/btSignIn"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/whiteOne"
@@ -34,6 +37,7 @@
                 android:text="Sign In"/>
         <com.google.android.material.button.MaterialButton
                 android:id="@+id/btSignUp"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/whiteOne"

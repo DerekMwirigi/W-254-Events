@@ -1,9 +1,11 @@
 package com.example.wsupevents.models.events
 
+import com.example.wsupevents.models.tickets.TicketTypeModel
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-class Event {
+class Event : Serializable {
     @SerializedName("id")
     @Expose
     var id: Int? = null
@@ -20,9 +22,9 @@ class Event {
     @Expose
     var eventDate: String? = null
 
-    @SerializedName("ticketPrice")
+    @SerializedName("ticketTypeModels")
     @Expose
-    var ticketPrice: Double? = null
+    var ticketTypeModels: List<TicketTypeModel>? = null
 
     @SerializedName("locationName")
     @Expose
