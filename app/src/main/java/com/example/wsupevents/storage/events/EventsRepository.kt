@@ -3,6 +3,7 @@ package com.example.wsupevents.storage.events
 import android.app.Application
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.wsupevents.R
 import com.example.wsupevents.models.events.EventCategoriesRes
@@ -20,9 +21,12 @@ import retrofit2.Response
 
 class EventsRepository (application: Application) {
     val eventObservable = MutableLiveData<Resource<EventRes>>()
-    val eventsObservable = MutableLiveData<Resource<EventsRes>>()
+    val featuredObservable = MediatorLiveData<Resource<EventsRes>>()
+    val favouriteObservable = MediatorLiveData<Resource<EventsRes>>()
+    val moreObservable = MediatorLiveData<Resource<EventsRes>>()
     val categoriesObservable = MutableLiveData<Resource<EventCategoriesRes>>()
     private val context: Context = application.applicationContext
+
     fun viewEvent(id: Int) {
         if (NetworkUtils.isConnected(context)) {
             eventObservable.postValue(Resource.loading(null))
@@ -57,38 +61,109 @@ class EventsRepository (application: Application) {
             eventObservable.postValue(Resource.error(context.getString(R.string.no_connection), null))
         }
     }
-    fun fetchEvents() {
+
+    fun featuredEvents() {
         if (NetworkUtils.isConnected(context)) {
-            eventsObservable.postValue(Resource.loading(null))
+            featuredObservable.postValue(Resource.loading(null))
             GlobalScope.launch(context = Dispatchers.Main) {
-                val call = RequestService.getService("").fetchEvents()
+                val call = RequestService.getService("").featuredEvents()
                 call.enqueue(object : Callback<EventsRes> {
                     override fun onFailure(call: Call<EventsRes>?, t: Throwable?) {
-                        eventsObservable.postValue(Resource.error(t.toString(), null))
+                        featuredObservable.postValue(Resource.error(t.toString(), null))
                     }
                     override fun onResponse(call: Call<EventsRes>?, response: Response<EventsRes>?) {
                         if (response != null) {
                             if (response.isSuccessful) {
                                 if (response.body()?.success !!) {
                                     if(response.body()?.status_code == 1){
-                                        response.body()?.let { eventsObservable.postValue(Resource.success(it))  }
+                                        response.body()?.let { featuredObservable.postValue(Resource.success(it))  }
                                     }else{
-                                        response.body()?.errors?.let {  eventsObservable.postValue(Resource.error(response.body()?.message + "\n" + it.joinToString { "\n" }, null)) }
+                                        response.body()?.errors?.let {  featuredObservable.postValue(Resource.error(response.body()?.message + "\n" + it.joinToString { "\n" }, null)) }
                                     }
                                 } else {
-                                    response.body()?.errors?.let { eventsObservable.postValue(Resource.error( response.body()?.message + "\n" + it.joinToString { "\n" }, null)) }
+                                    response.body()?.errors?.let { featuredObservable.postValue(Resource.error( response.body()?.message + "\n" + it.joinToString { "\n" }, null)) }
                                 }
                             } else {
-                                eventsObservable.postValue(Resource.error( response.toString(), null))
+                                featuredObservable.postValue(Resource.error( response.toString(), null))
                             }
                         } else {
-                            eventsObservable.postValue(Resource.error("Error Logging In", null))
+                            featuredObservable.postValue(Resource.error("Error Logging In", null))
                         }
                     }
                 })
             }
         } else {
-            eventsObservable.postValue(Resource.error(context.getString(R.string.no_connection), null))
+            featuredObservable.postValue(Resource.error(context.getString(R.string.no_connection), null))
+        }
+    }
+
+    fun favouriteEvents() {
+        if (NetworkUtils.isConnected(context)) {
+            favouriteObservable.postValue(Resource.loading(null))
+            GlobalScope.launch(context = Dispatchers.Main) {
+                val call = RequestService.getService("").favouriteEvents()
+                call.enqueue(object : Callback<EventsRes> {
+                    override fun onFailure(call: Call<EventsRes>?, t: Throwable?) {
+                        favouriteObservable.postValue(Resource.error(t.toString(), null))
+                    }
+                    override fun onResponse(call: Call<EventsRes>?, response: Response<EventsRes>?) {
+                        if (response != null) {
+                            if (response.isSuccessful) {
+                                if (response.body()?.success !!) {
+                                    if(response.body()?.status_code == 1){
+                                        response.body()?.let { favouriteObservable.postValue(Resource.success(it))  }
+                                    }else{
+                                        response.body()?.errors?.let {  favouriteObservable.postValue(Resource.error(response.body()?.message + "\n" + it.joinToString { "\n" }, null)) }
+                                    }
+                                } else {
+                                    response.body()?.errors?.let { favouriteObservable.postValue(Resource.error( response.body()?.message + "\n" + it.joinToString { "\n" }, null)) }
+                                }
+                            } else {
+                                favouriteObservable.postValue(Resource.error( response.toString(), null))
+                            }
+                        } else {
+                            favouriteObservable.postValue(Resource.error("Error Logging In", null))
+                        }
+                    }
+                })
+            }
+        } else {
+            favouriteObservable.postValue(Resource.error(context.getString(R.string.no_connection), null))
+        }
+    }
+
+    fun moreEvents() {
+        if (NetworkUtils.isConnected(context)) {
+            moreObservable.postValue(Resource.loading(null))
+            GlobalScope.launch(context = Dispatchers.Main) {
+                val call = RequestService.getService("").moreEvents()
+                call.enqueue(object : Callback<EventsRes> {
+                    override fun onFailure(call: Call<EventsRes>?, t: Throwable?) {
+                        moreObservable.postValue(Resource.error(t.toString(), null))
+                    }
+                    override fun onResponse(call: Call<EventsRes>?, response: Response<EventsRes>?) {
+                        if (response != null) {
+                            if (response.isSuccessful) {
+                                if (response.body()?.success !!) {
+                                    if(response.body()?.status_code == 1){
+                                        response.body()?.let { moreObservable.postValue(Resource.success(it))  }
+                                    }else{
+                                        response.body()?.errors?.let {  moreObservable.postValue(Resource.error(response.body()?.message + "\n" + it.joinToString { "\n" }, null)) }
+                                    }
+                                } else {
+                                    response.body()?.errors?.let { moreObservable.postValue(Resource.error( response.body()?.message + "\n" + it.joinToString { "\n" }, null)) }
+                                }
+                            } else {
+                                moreObservable.postValue(Resource.error( response.toString(), null))
+                            }
+                        } else {
+                            moreObservable.postValue(Resource.error("Error Logging In", null))
+                        }
+                    }
+                })
+            }
+        } else {
+            moreObservable.postValue(Resource.error(context.getString(R.string.no_connection), null))
         }
     }
 

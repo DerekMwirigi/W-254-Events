@@ -23,6 +23,7 @@ import com.example.wsupevents.models.tickets.TicketTypeModelCart
 import com.example.wsupevents.models.xit.Status
 import com.example.wsupevents.ui.payment.PaymentActivity
 import com.example.wsupevents.ui.tickets.TicketTypeAdapter
+import com.example.wsupevents.ui.tickets.TicketViewModel
 import com.example.wsupevents.utils.OnCartItemClickEvent
 import com.example.wsupevents.utils.Xit
 import kotlinx.android.synthetic.main.activity_event.*
@@ -31,6 +32,7 @@ import kotlinx.android.synthetic.main.content_event.avi
 
 class EventActivity : AppCompatActivity() {
     private lateinit var viewModel: EventViewModel
+    private lateinit var ticketViewModel: TicketViewModel
     private lateinit var activity: Activity
     private lateinit var ticketTypeAdapter : TicketTypeAdapter
     private lateinit var event: Event
@@ -39,8 +41,10 @@ class EventActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event)
         setSupportActionBar(toolbar)
-        toolbar.title=""
+        getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
+
         activity = this
+        ticketViewModel = ViewModelProviders.of(this).get(TicketViewModel::class.java)
         viewModel = ViewModelProviders.of(this).get(EventViewModel::class.java)
         viewModel.observeEvent().observe(this, Observer { data->
             run {
@@ -50,10 +54,10 @@ class EventActivity : AppCompatActivity() {
                 }
             }
         })
-        viewModel.observeCartTickets().observe(this, Observer { it->
+        ticketViewModel.observeCartTickets().observe(this, Observer { it->
             run {
                 ticketTypeAdapter.update(it.ticketTypeModels)
-                btProceed.isEnabled = viewModel.ticketsSelected()
+                btProceed.isEnabled = ticketViewModel.ticketsSelected()
             }
         })
         val bundle: Bundle? = intent.extras
@@ -61,6 +65,7 @@ class EventActivity : AppCompatActivity() {
             bundle.apply {
                 event = get("eventModel") as Event
                 viewModel.getEvent(event?.id!!)
+                title=event.label
             }
         }
         rvTicketTypes.layoutManager = LinearLayoutManager(this, VERTICAL, false)
@@ -68,7 +73,7 @@ class EventActivity : AppCompatActivity() {
 
         btProceed.setOnClickListener {
             val intent = Intent(this, PaymentActivity::class.java)
-            intent.putExtra("ticketCart", viewModel.observeCartTickets().value)
+            intent.putExtra("ticketCart", ticketViewModel.observeCartTickets().value)
             startActivity(intent)
         }
     }
@@ -86,15 +91,15 @@ class EventActivity : AppCompatActivity() {
            .error(R.drawable.ic_launcher_background)
            .fallback(R.drawable.ic_launcher_background)
            .into(imgImage)
-        viewModel.operateTicket(TicketCart(event?.label, event?.id, prepareTicketTypes(event)))
+        ticketViewModel.operateTicket(TicketCart(event?.label, event?.id, prepareTicketTypes(event)))
         ticketTypeAdapter = TicketTypeAdapter(emptyList(), object : OnCartItemClickEvent {
             override fun deleteItem(pos: Int) {
             }
             override fun addItem(pos: Int) {
-                viewModel.increament(pos)
+                ticketViewModel.ticketAdd(pos)
             }
             override fun minusItem(pos: Int) {
-                viewModel.decreament(pos)
+                ticketViewModel.ticketMinus(pos)
             }
         })
         rvTicketTypes.adapter = ticketTypeAdapter

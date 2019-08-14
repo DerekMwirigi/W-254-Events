@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".ui.payment.PaymentActivity">
-        <ScrollView android:layout_width="match_parent"
-                   android:layout_height="match_parent">
+    <ScrollView android:layout_width="match_parent"
+                android:layout_marginTop="-15dp"
+                android:layout_marginLeft="-10dp"
+                android:layout_marginRight="-10dp"
+                   android:layout_height="wrap_content">
             <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           android:orientation="vertical">
@@ -15,7 +19,7 @@
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         app:cardUseCompatPadding="true"
-                        android:padding="5dp"
+                        android:padding="0dp"
                         app:cardElevation="6dp"
                         app:cardCornerRadius="6dp"
                         android:layout_height="wrap_content"
@@ -32,7 +36,7 @@
                                   android:textColor="@color/whiteOne"
                                   android:textStyle="bold"
                                   android:textAlignment="center"
-                                  android:layout_margin="50dp"
+                                  android:layout_margin="10dp"
                                   android:textAllCaps="true"/>
                         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
                             <LinearLayout android:layout_width="match_parent"
@@ -94,33 +98,38 @@
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
                         android:orientation="vertical">
                     <com.google.android.material.chip.ChipGroup
                             android:layout_width="match_parent"
+                            android:id="@+id/cgPayments"
                             android:layout_height="wrap_content"
+                            android:animateLayoutChanges="true"
+                            app:singleSelection="true"
                             android:padding="5dp">
                         <com.google.android.material.chip.Chip
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/cpCard"
+                                style="@style/Widget.MaterialComponents.Chip.Action"
+                                android:layout_width="120dp"
                                 android:layout_height="wrap_content"
-                                app:checkedIcon="@drawable/tick"
-                                android:checked="false"
-                                android:checkable="true"
                                 android:padding="5dp"
-                                android:text="Card"/>
+                                android:background="@drawable/bg_blue_rounded_rec"
+                                android:textAlignment="center"
+                                android:text="CARD"/>
                         <com.google.android.material.chip.Chip
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/cpMpesa"
+                                style="@style/Widget.MaterialComponents.Chip.Action"
+                                android:layout_width="120dp"
                                 android:layout_height="wrap_content"
-                                app:checkedIcon="@drawable/tick"
-                                android:checked="true"
-                                android:checkable="true"
+                                android:textAlignment="center"
                                 android:padding="5dp"
-                                android:text="Mpesa"/>
+                                app:chipIcon="@drawable/ic_check_circle_black_24dp"
+                                android:background="@drawable/bg_blue_rounded_rec"
+                                android:text="MPESA"/>
                     </com.google.android.material.chip.ChipGroup>
 
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                              android:layout_marginTop="10dp"
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
                               android:textAlignment="center"
                               android:layout_gravity="center"
                               android:gravity="center"
@@ -131,31 +140,27 @@
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/btContinue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/whiteOne"
+            android:layout_margin="10dp"
+            app:cornerRadius="20dp"
+            app:rippleColor="@color/colorPrimary"
+            android:textStyle="normal"
+            app:backgroundTint="@color/colorPrimaryDark"
+            android:textAllCaps="true"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Dialog.Flush"
+            android:text="Continue"/>
     <com.wang.avi.AVLoadingIndicatorView
             android:visibility="gone"
             android:id="@+id/avi"
             app:indicatorColor="@color/colorPrimary"
-            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
             app:indicatorName="BallScaleMultipleIndicator"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"/>
-
-    <com.google.android.material.button.MaterialButton
-            android:id="@+id/btContinue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/whiteOne"
-            android:layout_marginTop="10dp"
-            app:cornerRadius="20dp"
-            app:rippleColor="@color/colorPrimary"
-            android:textStyle="normal"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="left"
-            app:backgroundTint="@color/greyTwo"
-            android:textAllCaps="true"
-            style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
-            android:text="Continue"/>
-</RelativeLayout>
+</LinearLayout>

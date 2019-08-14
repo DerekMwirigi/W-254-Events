@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:weightSum="4"
+              android:padding="5dp"
+              android:layout_height="wrap_content">
+    <com.google.android.material.card.MaterialCardView
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            app:cardUseCompatPadding="true"
+            android:padding="5dp"
+            app:cardElevation="6dp"
+            app:cardCornerRadius="6dp"
+            android:layout_height="90dp"
+            android:layout_weight="3">
+        <ImageView android:layout_width="wrap_content"
+                   android:id="@+id/imgImage"
+                   android:layout_height="wrap_content"
+                   android:layout_centerInParent="true"/>
+    </com.google.android.material.card.MaterialCardView>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="vertical"
+                  android:layout_weight="1"
+                  android:layout_height="99dp">
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="horizontal"
+                      android:weightSum="2"
+                      android:padding="5dp"
+                      android:layout_height="98dp">
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="vertical"
+                          android:layout_weight="1"
+                          android:layout_height="wrap_content">
+                <TextView android:layout_width="match_parent"
+                          android:textColor="@color/blackOne"
+                          android:textSize="8pt"
+                          android:id="@+id/tvLabel"
+                          android:text="Koroga Fest"
+                          android:layout_height="wrap_content"/>
+                <TextView android:layout_width="match_parent"
+                          android:textSize="6pt"
+                          android:id="@+id/tvDate"
+                          android:text="Sun, 18 Aug"
+                          android:textColor="@color/greyOne"
+                          android:layout_height="wrap_content"/>
+                <TextView android:layout_width="match_parent"
+                          android:textSize="6pt"
+                          android:id="@+id/tvDay"
+                          android:visibility="gone"
+                          android:text="Sun, 18 Aug"
+                          android:textColor="@color/greyTwo"
+                          android:layout_height="wrap_content"/>
+                <TextView android:layout_width="match_parent"
+                          android:textSize="6pt"
+                          android:id="@+id/tvDesc"
+                          android:visibility="gone"
+                          android:text="Sun, 18 Aug"
+                          android:textColor="@color/greyTwo"
+                          android:layout_height="wrap_content"/>
+                <TextView android:layout_width="match_parent"
+                          android:textSize="6pt"
+                          android:id="@+id/tvMonthYear"
+                          android:visibility="gone"
+                          android:text="Sun, 18 Aug"
+                          android:textColor="@color/greyTwo"
+                          android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <ImageView android:layout_width="wrap_content"
+                      android:layout_weight="1"
+                       app:srcCompat="@drawable/ic_more_vert_black_24dp"
+                      android:padding="2dp"
+                      android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <View android:layout_width="match_parent"
+              android:background="@color/greyTwo"
+              android:layout_height="0.3dp"></View>
+    </LinearLayout>
+</LinearLayout>

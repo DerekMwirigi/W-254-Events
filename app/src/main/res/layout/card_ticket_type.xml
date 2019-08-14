@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:padding="0dp"
@@ -26,17 +27,17 @@
                   android:padding="10dp"
                   android:layout_height="wrap_content"
                   android:layout_weight="1"/>
-        <TextView android:layout_width="wrap_content"
-                  android:id="@+id/tvMinus"
-                  android:text="-"
-                  android:textColor="@color/blackOne"
+        <ImageView android:layout_width="wrap_content"
+                  android:id="@+id/imgMinus"
+                  android:textColor="@color/colorPrimary"
                   android:textStyle="normal"
                   android:textSize="8pt"
+                   android:background="?attr/selectableItemBackgroundBorderless"
                   android:padding="10dp"
                   android:textAlignment="center"
                   android:layout_height="wrap_content"
-                  android:layout_weight="1"
-                  android:background="?attr/selectableItemBackgroundBorderless"/>
+                   app:srcCompat="@drawable/ic_remove_circle_outline_blue_24dp"
+                   android:layout_weight="1"/>
         <TextView android:layout_width="wrap_content"
                   android:text="0"
                   android:id="@+id/tvCount"
@@ -47,17 +48,17 @@
                   android:textAlignment="center"
                   android:layout_height="wrap_content"
                   android:layout_weight="1"/>
-        <TextView android:layout_width="wrap_content"
-                  android:text="+"
-                  android:id="@+id/tvAdd"
-                  android:textColor="@color/blackOne"
+        <ImageView android:layout_width="wrap_content"
+                  android:id="@+id/imgAdd"
+                  android:textColor="@color/colorPrimary"
                   android:textStyle="normal"
                   android:padding="10dp"
                   android:textSize="8pt"
+                  app:srcCompat="@drawable/ic_add_circle_outline_blue_24dp"
                   android:textAlignment="center"
                   android:layout_height="wrap_content"
-                  android:layout_weight="1"
-                  android:background="?attr/selectableItemBackgroundBorderless"/>
+                   android:background="?attr/selectableItemBackgroundBorderless"
+                   android:layout_weight="1"/>
     </LinearLayout>
     <TextView android:layout_width="match_parent"
               android:textColor="#e04"

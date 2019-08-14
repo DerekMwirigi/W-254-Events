@@ -34,8 +34,14 @@ interface EndpointApis {
     @GET("event/view.php")
     fun viewEvent (@Query("id") id: Int): Call<EventRes>
 
-    @GET("event/fetch.php")
-    fun fetchEvents(): Call<EventsRes>
+    @GET("event/featured.php")
+    fun featuredEvents(): Call<EventsRes>
+
+    @GET("event/favourite.php")
+    fun favouriteEvents(): Call<EventsRes>
+
+    @GET("event/more.php")
+    fun moreEvents(): Call<EventsRes>
 
     @GET("event/categories.php")
     fun fetchCategories(): Call<EventCategoriesRes>

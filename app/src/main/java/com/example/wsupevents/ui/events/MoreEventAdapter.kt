@@ -12,10 +12,10 @@ import com.example.wsupevents.utils.OnRecyclerViewItemClick
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class EventAdapter(private var modelList: List<Event>?, private val recyclerListener: OnRecyclerViewItemClick) : RecyclerView.Adapter<EventItemViewHolder>() {
+class MoreEventAdapter(private var modelList: List<Event>?, private val recyclerListener: OnRecyclerViewItemClick) : RecyclerView.Adapter<EventItemViewHolder>() {
     var itemView: View? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventItemViewHolder {
-        itemView = LayoutInflater.from(parent.context).inflate(R.layout.card_featured, parent, false)
+        itemView = LayoutInflater.from(parent.context).inflate(R.layout.card_more_event, parent, false)
         return EventItemViewHolder(itemView!!, recyclerListener)
     }
 

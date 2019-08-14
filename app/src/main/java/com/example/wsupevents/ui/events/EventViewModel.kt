@@ -14,22 +14,22 @@ import com.example.wsupevents.utils.OnRecyclerViewItemClick
 
 class EventViewModel  (application: Application) : AndroidViewModel(application) {
     private var context: Context = application.applicationContext
-    private val eventsObservable = MediatorLiveData<Resource<EventsRes>>()
+    private val featuredObservable = MediatorLiveData<Resource<EventsRes>>()
+    private val favouriteObservable = MediatorLiveData<Resource<EventsRes>>()
+    private val moreObservable = MediatorLiveData<Resource<EventsRes>>()
     private val eventObservable = MediatorLiveData<Resource<EventRes>>()
     private val categoriesObservable = MediatorLiveData<Resource<EventCategoriesRes>>()
-    private val buyTicketObservable = MediatorLiveData<Resource<IntPaymentRes>>()
-    private val cartTicketsObservable = MutableLiveData<TicketCart>()
     var eventsRepository: EventsRepository = EventsRepository(application)
-    var ticketRepository: TicketRepository = TicketRepository(application)
     init {
         context = application.applicationContext
         eventObservable.addSource(eventsRepository.eventObservable) { data -> eventObservable.setValue(data) }
-        eventsObservable.addSource(eventsRepository.eventsObservable) { data -> eventsObservable.setValue(data) }
+        featuredObservable.addSource(eventsRepository.featuredObservable) { data -> featuredObservable.setValue(data) }
+        favouriteObservable.addSource(eventsRepository.favouriteObservable) { data -> favouriteObservable.setValue(data) }
+        moreObservable.addSource(eventsRepository.moreObservable) { data -> moreObservable.setValue(data) }
         categoriesObservable.addSource(eventsRepository.categoriesObservable) { data -> categoriesObservable.setValue(data) }
-        buyTicketObservable.addSource(ticketRepository.buyTicketObservable) { data -> buyTicketObservable.setValue(data)}
     }
     fun observeEvents(): LiveData<Resource<EventsRes>> {
-        return eventsObservable
+        return featuredObservable
     }
     fun observeCategories(): LiveData<Resource<EventCategoriesRes>> {
         return categoriesObservable
@@ -37,39 +37,15 @@ class EventViewModel  (application: Application) : AndroidViewModel(application)
     fun observeEvent(): LiveData<Resource<EventRes>> {
         return eventObservable
     }
-    fun observeCartTickets () : LiveData<TicketCart>{
-        return cartTicketsObservable
-    }
-    fun operateTicket(ticketCart: TicketCart){
-        cartTicketsObservable.postValue(ticketCart)
-    }
-    fun ticketsSelected (): Boolean{
-        val ticketCart= cartTicketsObservable.value
-        return ticketCart?.ticketTypeModels?.size!! > 0
-    }
-    fun increament (pos: Int){
-        val ticketCart= cartTicketsObservable.value
-        ticketCart?.ticketTypeModels!![pos].count++
-        cartTicketsObservable.value=ticketCart
-    }
-
-    fun decreament (pos: Int){
-        val ticketCart= cartTicketsObservable.value
-        ticketCart?.ticketTypeModels!![pos].count--
-        cartTicketsObservable.value=ticketCart
-    }
 
     fun getEvent(id: Int){
         eventsRepository.viewEvent(id)
     }
     fun fetchEvents(){
-        eventsRepository.fetchEvents()
+        eventsRepository.featuredEvents()
     }
     fun fetchCategories(){
         eventsRepository.fetchCategories()
-    }
-    fun observeBuyTuckets () : LiveData<Resource<IntPaymentRes>>  {
-        return buyTicketObservable
     }
 
     fun getCategoriesAdapter (eventCategoriesRes: EventCategoriesRes) : CategoryAdapter{
@@ -79,5 +55,21 @@ class EventViewModel  (application: Application) : AndroidViewModel(application)
                     override fun onLongClickListener(position: Int) {
                     }
                 })
+    }
+
+    fun favouriteEvents(){
+        eventsRepository.favouriteEvents()
+    }
+
+    fun observeFavouriteEvents(): LiveData<Resource<EventsRes>> {
+        return favouriteObservable
+    }
+
+    fun moreEvents(){
+        eventsRepository.moreEvents()
+    }
+
+    fun observeMoreEvents(): LiveData<Resource<EventsRes>> {
+        return moreObservable
     }
 }

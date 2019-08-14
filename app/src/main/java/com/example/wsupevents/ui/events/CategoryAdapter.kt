@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.wsupevents.R
 import com.example.wsupevents.models.events.EventCategory
+import com.example.wsupevents.utils.CircleTransform
 import com.example.wsupevents.utils.OnRecyclerViewItemClick
 
 class CategoryAdapter(private var modelList: List<EventCategory>?, private val recyclerListener: OnRecyclerViewItemClick) : RecyclerView.Adapter<CategoryItemViewHolder>() {

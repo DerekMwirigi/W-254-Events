@@ -1,6 +1,7 @@
 package com.example.wsupevents.ui.tickets
 
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wsupevents.R
@@ -13,27 +14,27 @@ class TicketTypeViewHolder (itemView: View, listener: OnCartItemClickEvent) : Re
     var itemVew: View
     var tvLabel: TextView
     var tvPrice: TextView
-    var tvMinus: TextView
+    var imgMinus: ImageView
     var tvCount: TextView
-    var tvAdd: TextView
+    var imgAdd: ImageView
     var tvClossesOn: TextView
     init {
         this.itemVew = itemView
         tvLabel = itemView.findViewById(R.id.tvLabel)
         tvPrice = itemView.findViewById(R.id.tvPrice)
-        tvMinus = itemView.findViewById(R.id.tvMinus)
+        imgMinus = itemView.findViewById(R.id.imgMinus)
         tvCount = itemView.findViewById(R.id.tvCount)
-        tvAdd = itemView.findViewById(R.id.tvAdd)
+        imgAdd = itemView.findViewById(R.id.imgAdd)
         tvClossesOn = itemView.findViewById(R.id.tvClossesOn)
 
-        tvAdd.setOnClickListener(this)
-        tvMinus.setOnClickListener(this)
+        imgAdd.setOnClickListener(this)
+        imgMinus.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
-        if (p0 == tvAdd)
+        if (p0 == imgAdd)
             listenerWeakReference.get()?.addItem(adapterPosition)
-        if (p0 == tvMinus)
+        if (p0 == imgMinus)
             listenerWeakReference.get()?.minusItem(adapterPosition)
     }
 }

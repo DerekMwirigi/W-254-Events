@@ -46,19 +46,19 @@
                     <ImageView
                             android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
-                            android:src="@drawable/favorite"
+                            app:srcCompat="@drawable/ic_favorite_border_white_24dp"
                             android:padding="4dp"
                         android:layout_weight="1"/>
                     <ImageView
                             android:layout_width="wrap_content"
-                            android:src="@drawable/sharing"
+                            app:srcCompat="@drawable/ic_share_white_24dp"
                             android:layout_height="wrap_content"
                             android:padding="4dp"
                             android:layout_weight="1"/>
                     <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/menu"
+                            app:srcCompat="@drawable/ic_more_vert_white_24dp"
                             android:padding="4dp"
                             android:layout_weight="1"/>
                 </LinearLayout>
