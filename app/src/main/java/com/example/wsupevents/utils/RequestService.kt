@@ -7,8 +7,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RequestService {
-    private val BASE_URL = "http://192.168.1.104:81/dEvOps/WsupEvents/api/"
-    //private val BASE_URL = "http://calista.co.ke/events/api/"
+    //private val BASE_URL = "http://192.168.0.51:81/dEvOps/WsupEvents/api/"
+    private val BASE_URL = "http://calista.co.ke/events/api/"
     var gson = GsonBuilder()
         .setLenient()
         .create()

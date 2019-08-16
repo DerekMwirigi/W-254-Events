@@ -9,6 +9,7 @@ import com.example.wsupevents.R
 import com.example.wsupevents.storage.data.PrefrenceManager
 import com.example.wsupevents.ui.auth.AuthActivity
 import com.example.wsupevents.ui.main.Home
+import com.example.wsupevents.ui.main.IndexActivity
 import com.example.wsupevents.utils.Xit
 
 class SplashActivity : AppCompatActivity() {
@@ -22,7 +23,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }else{
-                val intent = Intent(applicationContext, Home::class.java)
+                val intent = Intent(applicationContext, IndexActivity::class.java)
                 startActivity(intent)
                 finish()
             }

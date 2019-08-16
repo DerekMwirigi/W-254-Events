@@ -10,27 +10,43 @@
                   android:padding="5dp"
                   android:background="@color/whiteOne"
                   android:orientation="vertical">
-        <SearchView
-                android:visibility="visible"
-                android:id="@+id/searchView"
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:elevation="0dp"
-                android:queryHint="Search events"
-                app:cornerRadius="20dp"
-                android:tooltipText="Search events"
-                android:contextClickable="true"
-                android:autofillHints="Search events"
-                android:background="@drawable/bg_white_rounded"
-                android:layout_height="wrap_content">
-        </SearchView>
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:textStyle="bold"
+                      android:textColor="@color/blackOne"
+                      android:textSize="6.5pt"
+                      android:visibility="gone"
+                      android:text="Categories >"/>
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCategories"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+            </androidx.recyclerview.widget.RecyclerView>
+            <com.wang.avi.AVLoadingIndicatorView
+                    android:visibility="visible"
+                    android:id="@+id/avi2"
+                    app:indicatorColor="@color/colorPrimary"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    app:indicatorName="BallScaleMultipleIndicator"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"/>
+        </LinearLayout>
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/whiteOne"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
             <TextView android:layout_width="match_parent"
-                      android:visibility="gone"
+                      android:visibility="visible"
                       android:layout_height="wrap_content"
                       android:textStyle="bold"
                       android:textSize="6.5pt"
@@ -61,35 +77,7 @@
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"/>
         </LinearLayout>
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="5dp">
-            <TextView android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:textStyle="bold"
-                      android:textColor="@color/blackOne"
-                      android:textSize="6.5pt"
-                      android:visibility="gone"
-                      android:text="Categories >"/>
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvCategories"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-            </androidx.recyclerview.widget.RecyclerView>
-            <com.wang.avi.AVLoadingIndicatorView
-                    android:visibility="visible"
-                    android:id="@+id/avi2"
-                    app:indicatorColor="@color/colorPrimary"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_height="wrap_content"
-                    app:indicatorName="BallScaleMultipleIndicator"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"/>
-        </LinearLayout>
+
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -140,7 +128,7 @@
                 android:padding="5dp">
             <TextView android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:visibility="gone"
+                      android:visibility="visible"
                       android:textStyle="bold"
                       android:textSize="6.5pt"
                       android:textColor="@color/blackOne"

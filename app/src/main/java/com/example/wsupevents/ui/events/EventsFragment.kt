@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.wsupevents.R
 import com.example.wsupevents.models.xit.Status
 import com.example.wsupevents.ui.main.IndexViewModel
@@ -38,31 +39,36 @@ class EventsFragment : Fragment() {
         indexViewModel.setTitle("Events")
         viewModel = ViewModelProviders.of(this).get(EventViewModel::class.java)
 
-//        viewModel.observeEvents().observe(this, Observer { data->
-//            run {
-//                Xit.setState(data.status, data.message, avi, context, activity)
-//                if(data.status== Status.SUCCESS&&data.data!=null){
-//                   rvEvents.adapter = EventAdapter(data.data.data!!, object : OnRecyclerViewItemClick {
-//                       override fun onClickListener(position: Int) {
-//                           val intent = Intent(context, EventActivity::class.java)
-//                           intent.putExtra("eventModel", data.data.data!![position])
-//                           startActivity(intent)
-//                       }
-//                       override fun onLongClickListener(position: Int) {
-//                       }
-//                   })
-//                }
-//            }
-//        })
-//        viewModel.fetchEvents()
-//        rvEvents.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-//        rvEvents.itemAnimator = DefaultItemAnimator()
+        viewModel.observeFeatured().observe(this, Observer { data->
+            run {
+                Xit.setState(data.status, data.message, avi, context, activity)
+                if(data.status== Status.SUCCESS&&data.data!=null){
+                   rvEvents.adapter = EventAdapter(data.data.data!!, object : OnRecyclerViewItemClick {
+                       override fun onClickListener(position: Int) {
+                           val intent = Intent(context, EventActivity::class.java)
+                           intent.putExtra("eventModel", data.data.data!![position])
+                           startActivity(intent)
+                       }
+                       override fun onLongClickListener(position: Int) {
+                       }
+                   })
+                }
+            }
+        })
+        viewModel.featuredEvents()
+        rvEvents.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        rvEvents.itemAnimator = DefaultItemAnimator()
 
         viewModel.observeCategories().observe(this, Observer { data->
             run {
                 Xit.setState(data.status, data.message, avi2, context, activity)
                 if(data.status== Status.SUCCESS&&data.data!=null){
-                    rvCategories.adapter = viewModel.getCategoriesAdapter(data.data!!)
+                    rvCategories.adapter = CategoryAdapter(data.data.data!!, object : OnRecyclerViewItemClick {
+                        override fun onClickListener(position: Int) {
+                        }
+                        override fun onLongClickListener(position: Int) {
+                        }
+                    })
                 }
             }
         })

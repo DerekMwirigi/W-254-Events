@@ -30,7 +30,7 @@ class EventAdapter(private var modelList: List<Event>?, private val recyclerList
         Glide.with(itemView!!)  //2
             .load(model.image) //3
             .centerCrop() //4
-            .placeholder(R.drawable.ic_shortcut_events) //5
+            .placeholder(R.drawable.ic_launcher_background) //5
             .error(R.drawable.ic_launcher_background) //6
             .fallback(R.drawable.ic_launcher_background) //7
             .into(holder.image) //8

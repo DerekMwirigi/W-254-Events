@@ -6,6 +6,8 @@ import com.example.auth.models.VerifyUSecret
 import com.example.wsupevents.models.auth.SignUp
 import com.example.wsupevents.models.auth.VerifyUIdRes
 import com.example.wsupevents.models.auth.VerifyUSecretRes
+import com.example.wsupevents.models.billing.BillingAddress
+import com.example.wsupevents.models.billing.BillingAddressRes
 import com.example.wsupevents.models.events.EventCategoriesRes
 import com.example.wsupevents.models.events.EventRes
 import com.example.wsupevents.models.events.EventsRes
@@ -54,4 +56,11 @@ interface EndpointApis {
 
     @POST("ticket/init-payment.php")
     fun initPayment(@Body initPayment: InitPayment?): Call<IntPaymentRes>
+
+    @POST("billing/create.php")
+    fun saveBillingAddress(@Body billingAddress: BillingAddress): Call<BillingAddressRes>
+
+    @GET("billing/fetch.php")
+    fun getBillingAddresses(): Call<BillingAddressRes>
+
 }

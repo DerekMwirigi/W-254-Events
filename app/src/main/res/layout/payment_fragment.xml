@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_marginTop="-12dp"
+                  android:layout_marginLeft="-10dp"
+                  android:layout_marginRight="-10dp"
+                  android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <com.google.android.material.card.MaterialCardView
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    app:cardUseCompatPadding="true"
+                    android:padding="5dp"
+                    app:cardElevation="5dp"
+                    app:cardCornerRadius="4dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorAccent"
+                    app:cardBackgroundColor="@color/colorAccent">
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="vertical"
+                              android:padding="0dp">
+                    <androidx.appcompat.widget.Toolbar
+                            android:id="@+id/toolbar"
+                            android:layout_height="?attr/actionBarSize"
+                            android:layout_width="match_parent"
+                            app:layout_collapseMode="pin"
+                            app:popupTheme="@style/AppTheme.PopupOverlay">
+                        <ImageView android:layout_width="wrap_content"
+                                   android:id="@+id/imgBack"
+                                   android:layout_height="wrap_content"
+                                   android:visibility="visible"
+                                   app:srcCompat="@drawable/ic_arrow_back_white_24dp"
+                                   android:backgroundTint="@color/colorPrimary"
+                                   android:background="?attr/selectableItemBackgroundBorderless"/>
+                    </androidx.appcompat.widget.Toolbar>
+                    <TextView android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:textSize="7.5pt"
+                              android:text="Ticketsasa Events"
+                              android:textColor="@color/whiteOne"
+                              android:textStyle="bold"
+                              android:textAlignment="center"
+                              android:layout_margin="10dp"
+                              android:textAllCaps="false"/>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:padding="10dp"
+                                  android:orientation="vertical">
+                        <LinearLayout android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:orientation="horizontal" android:weightSum="2"
+                                      android:padding="10dp">
+                            <TextView android:layout_width="match_parent"
+                                      android:layout_weight="1"
+                                      android:textStyle="normal"
+                                      android:textColor="@color/greyOne"
+                                      android:text="Account"
+                                      android:textAllCaps="true"
+                                      android:layout_height="wrap_content"/>
+                            <TextView android:layout_width="match_parent"
+                                      android:layout_weight="1"
+                                      android:textStyle="normal"
+                                      android:textColor="@color/greyOne"
+                                      android:layout_gravity="right"
+                                      android:gravity="right"
+                                      android:text="Total"
+                                      android:textAllCaps="true"
+                                      android:layout_height="wrap_content"/>
+                        </LinearLayout>
+                        <View android:layout_width="match_parent" android:layout_height="0.5dp"
+                              android:background="@color/whiteOne"></View>
+                        <LinearLayout android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:orientation="horizontal" android:weightSum="2"
+                                      android:padding="10dp">
+                            <TextView android:layout_width="match_parent"
+                                      android:id="@+id/tvLabel"
+                                      android:layout_weight="1"
+                                      android:textStyle="normal"
+                                      android:textColor="@color/whiteOne"
+                                      android:text="Event Name"
+                                      android:layout_height="wrap_content"/>
+                            <TextView android:layout_width="match_parent"
+                                      android:layout_weight="1"
+                                      android:textStyle="normal"
+                                      android:textColor="@color/whiteOne"
+                                      android:layout_gravity="right"
+                                      android:gravity="right"
+                                      android:id="@+id/tvAmount"
+                                      android:text="Amount"
+                                      android:layout_height="wrap_content"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <ScrollView android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                <LinearLayout android:layout_width="match_parent"
+                              android:orientation="vertical"
+                              android:layout_height="wrap_content">
+                    <TextView android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:textStyle="normal"
+                              android:text="PAY WITH"
+                              android:textColor="@color/greyTwo"
+                              android:textAlignment="center"
+                              android:layout_gravity="center"
+                              android:textSize="8pt"
+                              android:textAllCaps="true"/>
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:orientation="vertical">
+                        <com.google.android.material.chip.ChipGroup
+                                android:layout_width="match_parent"
+                                android:id="@+id/cgPayments"
+                                android:layout_height="wrap_content"
+                                android:animateLayoutChanges="true"
+                                app:singleSelection="true"
+                                android:padding="5dp">
+                            <com.google.android.material.chip.Chip
+                                    android:id="@+id/cpCard"
+                                    style="@style/Widget.MaterialComponents.Chip.Action"
+                                    android:layout_width="120dp"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:background="@drawable/bg_blue_rounded_rec"
+                                    app:chipIcon="@drawable/ic_check_circle_black_24dp"
+                                    android:textAlignment="center"
+                                    android:text="CARD"/>
+                            <com.google.android.material.chip.Chip
+                                    android:id="@+id/cpMpesa"
+                                    style="@style/Widget.MaterialComponents.Chip.Action"
+                                    android:layout_width="120dp"
+                                    android:layout_height="wrap_content"
+                                    android:textAlignment="center"
+                                    android:padding="5dp"
+                                    android:background="@drawable/bg_blue_rounded_rec"
+                                    android:text="MPESA"/>
+                        </com.google.android.material.chip.ChipGroup>
+
+
+                        <TextView android:layout_width="wrap_content"
+                                  android:id="@+id/tvAddPayment"
+                                  android:layout_height="wrap_content"
+                                  android:textAlignment="center"
+                                  android:layout_gravity="center"
+                                  android:gravity="center"
+                                  android:textStyle="normal"
+                                  android:textSize="6pt"
+                                  android:textColor="@color/colorAccent"
+                                  android:background="?attr/selectableItemBackgroundBorderless"
+                                  android:text="+ Add new Card"/>
+
+                        <LinearLayout android:layout_width="match_parent"
+                                      android:orientation="horizontal"
+                                      android:background="@drawable/bg_blue_rounded_rec"
+                                      android:weightSum="3"
+                                      android:layout_marginTop="10dp"
+                                      android:layout_height="40dp">
+                            <ImageView android:layout_width="match_parent"
+                                       android:id="@+id/imgIcon"
+                                       android:layout_weight="1"
+                                       android:layout_height="match_parent"/>
+                            <TextView android:layout_width="match_parent"
+                                      android:id="@+id/tvPaymentOption"
+                                      android:layout_weight="1"
+                                      android:text="Payment Option"
+                                      android:layout_gravity="center_vertical"
+                                      android:layout_height="wrap_content"/>
+                            <ImageView android:layout_width="match_parent"
+                                       app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp"
+                                       android:layout_weight="1"
+                                       android:layout_height="match_parent"/>
+                        </LinearLayout>
+                        <Spinner android:layout_width="match_parent"
+                                 android:visibility="gone"
+                                 android:id="@+id/spPaymentAddresses"
+                                 android:layout_height="40dp"
+                                 android:background="@drawable/payment_address_spinner"
+                                 android:spinnerMode="dropdown">
+                        </Spinner>
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/btContinue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/whiteOne"
+            android:layout_margin="10dp"
+            app:cornerRadius="20dp"
+            app:rippleColor="@color/colorPrimary"
+            android:textStyle="normal"
+            app:backgroundTint="@color/colorPrimaryDark"
+            android:textAllCaps="true"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Dialog.Flush"
+            android:text="Continue"/>
+    <com.wang.avi.AVLoadingIndicatorView
+            android:visibility="gone"
+            android:id="@+id/avi"
+            app:indicatorColor="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            app:indicatorName="BallScaleMultipleIndicator"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+    <!--<include layout="@layout/bottom_sheet_layout" />-->
+</LinearLayout>

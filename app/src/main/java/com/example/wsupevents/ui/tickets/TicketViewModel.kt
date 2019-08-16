@@ -50,7 +50,7 @@ class TicketViewModel (application: Application) : AndroidViewModel(application)
 
     fun ticketMinus (pos: Int){
         val ticketCart= cartTicketsObservable.value
-        if(ticketCart?.ticketTypeModels!![pos].count > 1){
+        if(ticketCart?.ticketTypeModels!![pos].count > 0){
             ticketCart?.ticketTypeModels!![pos].count--
         }
         cartTicketsObservable.value=ticketCart

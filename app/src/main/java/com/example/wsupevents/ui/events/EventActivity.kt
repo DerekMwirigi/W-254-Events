@@ -2,12 +2,8 @@ package com.example.wsupevents.ui.events
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -19,7 +15,6 @@ import com.example.wsupevents.R
 import com.example.wsupevents.models.events.Event
 import com.example.wsupevents.models.tickets.TicketCart
 import com.example.wsupevents.models.tickets.TicketTypeModel
-import com.example.wsupevents.models.tickets.TicketTypeModelCart
 import com.example.wsupevents.models.xit.Status
 import com.example.wsupevents.ui.payment.PaymentActivity
 import com.example.wsupevents.ui.tickets.TicketTypeAdapter
@@ -28,7 +23,6 @@ import com.example.wsupevents.utils.OnCartItemClickEvent
 import com.example.wsupevents.utils.Xit
 import kotlinx.android.synthetic.main.activity_event.*
 import kotlinx.android.synthetic.main.content_event.*
-import kotlinx.android.synthetic.main.content_event.avi
 
 class EventActivity : AppCompatActivity() {
     private lateinit var viewModel: EventViewModel
@@ -41,7 +35,9 @@ class EventActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event)
         setSupportActionBar(toolbar)
-        getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
+        //getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
+        imgBack.setOnClickListener{ onBackPressed() }
+        imgShare.setOnClickListener{ viewModel.shareEvent(event) }
 
         activity = this
         ticketViewModel = ViewModelProviders.of(this).get(TicketViewModel::class.java)

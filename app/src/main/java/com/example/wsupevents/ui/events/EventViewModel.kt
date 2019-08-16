@@ -1,7 +1,9 @@
 package com.example.wsupevents.ui.events
 import android.app.Application
 import android.content.Context
+import android.content.Intent
 import androidx.lifecycle.*
+import com.example.wsupevents.models.events.Event
 import com.example.wsupevents.models.events.EventCategoriesRes
 import com.example.wsupevents.models.events.EventRes
 import com.example.wsupevents.models.events.EventsRes
@@ -28,7 +30,7 @@ class EventViewModel  (application: Application) : AndroidViewModel(application)
         moreObservable.addSource(eventsRepository.moreObservable) { data -> moreObservable.setValue(data) }
         categoriesObservable.addSource(eventsRepository.categoriesObservable) { data -> categoriesObservable.setValue(data) }
     }
-    fun observeEvents(): LiveData<Resource<EventsRes>> {
+    fun observeFeatured(): LiveData<Resource<EventsRes>> {
         return featuredObservable
     }
     fun observeCategories(): LiveData<Resource<EventCategoriesRes>> {
@@ -41,7 +43,7 @@ class EventViewModel  (application: Application) : AndroidViewModel(application)
     fun getEvent(id: Int){
         eventsRepository.viewEvent(id)
     }
-    fun fetchEvents(){
+    fun featuredEvents(){
         eventsRepository.featuredEvents()
     }
     fun fetchCategories(){
@@ -71,5 +73,14 @@ class EventViewModel  (application: Application) : AndroidViewModel(application)
 
     fun observeMoreEvents(): LiveData<Resource<EventsRes>> {
         return moreObservable
+    }
+
+    fun shareEvent(event: Event){
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, "Shared with Love. " + event.description)
+            type = "text/plain"
+        }
+        context.startActivity(sendIntent)
     }
 }

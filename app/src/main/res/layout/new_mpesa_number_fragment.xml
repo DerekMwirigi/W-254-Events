@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            app:layout_collapseMode="pin"
+            android:background="@color/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+        <RelativeLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent">
+            <ImageView android:layout_width="wrap_content"
+                       android:id="@+id/imgBack"
+                       android:layout_height="wrap_content"
+                       android:layout_alignParentLeft="true"
+                       android:visibility="visible"
+                       android:layout_centerVertical="true"
+                       app:srcCompat="@drawable/ic_arrow_back_white_24dp"
+                       android:backgroundTint="@color/colorPrimary"
+                       android:background="?attr/selectableItemBackgroundBorderless"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_centerInParent="true"
+                      android:text="Add M-Pesa"
+                      android:textColor="@color/whiteOne"
+                      android:layout_centerVertical="true"
+                      android:textStyle="bold"
+                      android:textSize="7.5pt"
+                      android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="vertical"
+                  android:padding="10dp"
+                  android:layout_height="wrap_content">
+        <TextView android:layout_width="match_parent"
+                  android:textStyle="normal"
+                  android:textSize="6pt"
+                  android:textColor="@color/greyTwo"
+                  android:text="Enter Safaricom Number"
+                  android:textAlignment="center"
+                  android:layout_height="wrap_content"/>
+        <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                app:boxCornerRadiusTopStart="30dp"
+                app:boxCornerRadiusTopEnd="30dp"
+                app:boxCornerRadiusBottomStart="30dp"
+                app:boxCornerRadiusBottomEnd="30dp"
+                app:boxStrokeWidth="1dp"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/colorPrimary">
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:helperText="Number"
+                    app:helperTextEnabled="true"
+                    android:drawableRight="@drawable/ic_account_circle_blue_24dp"
+                    android:hint="Number"
+                    android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                app:boxCornerRadiusTopStart="30dp"
+                app:boxCornerRadiusTopEnd="30dp"
+                app:boxCornerRadiusBottomStart="30dp"
+                app:boxCornerRadiusBottomEnd="30dp"
+                app:boxStrokeWidth="1dp"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/colorPrimary"
+                app:passwordToggleEnabled="true">
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtAccName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:helperText="A/C Name"
+                    app:helperTextEnabled="true"
+                    android:hint="A/C Name"
+                    android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/btSave"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/whiteOne"
+                app:cornerRadius="20dp"
+                app:rippleColor="@color/colorPrimary"
+                android:textStyle="normal"
+                app:backgroundTint="@color/greyTwo"
+                android:textAllCaps="false"
+                android:layout_gravity="center"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Dialog.Flush"
+                android:text="SAVE"/>
+        <com.wang.avi.AVLoadingIndicatorView
+                android:visibility="gone"
+                android:id="@+id/avi"
+                app:indicatorColor="@color/colorPrimary"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                app:indicatorName="BallScaleMultipleIndicator"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"/>
+    </LinearLayout>
+</LinearLayout>
